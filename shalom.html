@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalom — Educate. Empower. Illuminate.</title>
+    <meta name="description"
+        content="Join Shalom — providing quality education, nutrition, medical care and digital skills to children in rural Uganda. Partner with us today.">
+    <meta name="author" content="Shalom">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --empire-black: #000000;
+            --empire-white: #FFFFFF;
+            --empire-gold: #C9A961;
+            --empire-blue: #2563eb;
+            --empire-gray: #F8F8F8;
+            --empire-dark-gray: #2C2C2C;
+            --empire-border: #E0E0E0;
+            --empire-text: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', -apple-system, sans-serif;
+            font-weight: 400;
+            background: var(--empire-white);
+            color: var(--empire-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .brand-text {
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--empire-black);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes slide {
+
+            0%,
+            30% {
+                transform: translateX(0);
+            }
+
+            33%,
+            63% {
+                transform: translateX(-33.333%);
+            }
+
+            66%,
+            96% {
+                transform: translateX(-66.666%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-slide {
+            animation: slide 18s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 40s linear infinite;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--empire-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #aaa;
+            border-radius: 3px;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ===== HEADER ===== */
+        #site-header {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 50;
+        }
+
+        /* ===== BOTTOM NAV ===== */
+        #bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            z-index: 50;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 10px 4px 8px;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: color 0.2s;
+            font-size: 9px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            gap: 3px;
+            background: none;
+            border: none;
+        }
+
+        .nav-item.active {
+            color: #000;
+        }
+
+        .nav-item.active svg {
+            filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+        }
+
+        /* ===== VIEWS ===== */
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* ===== CARD ===== */
+        .empire-card {
+            background: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .empire-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+        }
+
+        /* ===== PROGRAMME CARD ===== */
+        .prog-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--empire-blue);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 2px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* ===== IMPACT STAT ===== */
+        .stat-card {
+            text-align: center;
+            padding: 24px 16px;
+            background: white;
+            border: 1px solid #f3f4f6;
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-bar {
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--empire-blue);
+            border-radius: 99px;
+            transition: width 1s;
+        }
+
+        /* ===== DONATE BUTTON ===== */
+        .btn-primary {
+            background: #000;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #222;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        /* floating WhatsApp removed */
+        .contact-action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 18px;
+            border-radius: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .contact-action-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* ===== SIDEBAR ===== */
+        #sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 60;
+            display: none;
+            animation: fadeIn 0.2s;
+        }
+
+        #sidebar-overlay.open {
+            display: block;
+        }
+
+        #sidebar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 280px;
+            background: white;
+            overflow-y: auto;
+            animation: slideInLeft 0.3s ease;
+        }
+
+        /* ===== TOAST ===== */
+        #toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #111;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-family: 'Montserrat', sans-serif;
+            z-index: 100;
+            opacity: 0;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== PROFILE SHEET ===== */
+        #profile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 80;
+            display: none;
+            animation: fadeIn 0.2s;
+        }
+
+        #profile-overlay.open {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        #profile-sheet {
+            width: 100%;
+            max-width: 560px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px 24px 0 0;
+            overflow: hidden;
+            animation: slideUpSheet 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideUpSheet {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .profile-hero {
+            position: relative;
+            height: 260px;
+            width: 100%;
+        }
+
+        .profile-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.1) 60%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+
+        .profile-badge {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            font-size: 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 4px 12px;
+            border-radius: 99px;
+            margin-bottom: 6px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .wa-support-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .wa-support-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* scholar card */
+        .scholar-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .scholar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        /* marquee card */
+        .mq-card {
+            width: 220px;
+            margin-right: 16px;
+            flex-shrink: 0;
+            background: white;
+            border: 1px solid #f0f0f0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black antialiased pb-16">
+
+    <!-- ===== SIDEBAR ===== -->
+    <div id="sidebar-overlay">
+        <div id="sidebar">
+            <div class="p-5 border-b flex items-center justify-between">
+                <span class="font-black text-sm uppercase tracking-widest"
+                    style="font-family:'Montserrat',sans-serif">Shalom</span>
+                <button onclick="closeSidebar()" class="p-1 hover:bg-gray-100 rounded">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <nav class="p-4 space-y-1">
+                <button onclick="goTab('home');closeSidebar();"
+                    class="w-full text-left px-4 py-3 text-sm font-semibold hover:bg-gray-50 rounded uppercase tracking-wider"
+                    style="font-family:'Montserrat',sans-serif">Home</button>
+                <button onclick="goTab('scholars');closeSidebar();"
+                    class="w-full text-left px-4 py-3 text-sm font-semibold hover:bg-gray-50 rounded uppercase tracking-wider"
+                    style="font-family:'Montserrat',sans-serif">Our Scholars</button>
+                <button onclick="goTab('impact');closeSidebar();"
+                    class="w-full text-left px-4 py-3 text-sm font-semibold hover:bg-gray-50 rounded uppercase tracking-wider"
+                    style="font-family:'Montserrat',sans-serif">Our Impact</button>
+                <button onclick="goTab('partner');closeSidebar();"
+                    class="w-full text-left px-4 py-3 text-sm font-semibold hover:bg-gray-50 rounded uppercase tracking-wider"
+                    style="font-family:'Montserrat',sans-serif">Partner / Donate</button>
+                <div class="border-t my-3"></div>
+                <div class="px-4 py-2">
+                    <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-2"
+                        style="font-family:'Montserrat',sans-serif">Contact</p>
+                    <a href="tel:+256700000000" class="flex items-center gap-2 text-sm text-gray-700 py-1"><i
+                            data-lucide="phone" class="w-4 h-4"></i>+256 700 000 000</a>
+                    <a href="mailto:info@shalominitiative.org"
+                        class="flex items-center gap-2 text-sm text-gray-700 py-1"><i data-lucide="mail"
+                            class="w-4 h-4"></i>info@shalominitiative.org</a>
+                </div>
+            </nav>
+            <div class="p-4 border-t">
+                <p class="text-xs text-gray-400 text-center" style="font-family:'Montserrat',sans-serif">© 2025 Shalom
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="site-header">
+        <div class="px-3 py-2 flex items-center justify-between max-w-7xl mx-auto">
+            <button onclick="openSidebar()" class="p-2 hover:bg-gray-50 transition-colors -ml-2">
+                <i data-lucide="menu" class="w-5 h-5 text-gray-900"></i>
+            </button>
+
+            <div class="absolute left-1/2 -translate-x-1/2 cursor-pointer" onclick="goTab('home')">
+                <div class="flex flex-col items-center">
+                    <span class="text-lg font-black leading-none tracking-tighter"
+                        style="font-family:'Montserrat',sans-serif">SHALOM</span>
+                    <span class="text-[8px] font-bold tracking-[0.25em] text-blue-600 uppercase"
+                        style="font-family:'Montserrat',sans-serif">Uganda</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-1">
+                <button onclick="goTab('impact')" class="p-2 hover:bg-gray-50 transition-colors">
+                    <i data-lucide="bar-chart-2" class="w-5 h-5 text-gray-900"></i>
+                </button>
+                <button onclick="goTab('partner')" class="p-2 hover:bg-gray-50 transition-colors -mr-2">
+                    <i data-lucide="heart" class="w-5 h-5 text-gray-900"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="app-content">
+
+        <!-- HOME VIEW -->
+        <div id="view-home" class="view active animate-fade-in">
+
+            <!-- Hero Carousel -->
+            <div class="relative h-[420px] sm:h-[560px] w-full overflow-hidden">
+                <div class="flex w-[300%] h-full animate-slide">
+                    <!-- Slide 1 -->
+                    <div class="w-1/3 relative h-full">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1200"
+                            class="absolute inset-0 w-full h-full object-cover" alt="Quality Learning">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end pl-6 pb-8">
+                            <div class="animate-slide-in-left text-left">
+                                <h1
+                                    class="text-xs sm:text-sm font-bold text-white tracking-[0.2em] mb-2 drop-shadow-md uppercase">
+                                    Educate. Empower. Illuminate.
+                                </h1>
+                                <p class="text-white/90 text-[10px] font-light tracking-wider drop-shadow-md">
+                                    Bringing quality education to children in rural Uganda since 2020.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="w-1/3 relative h-full">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200"
+                            class="absolute inset-0 w-full h-full object-cover" alt="Nutrition Program">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end pl-6 pb-8">
+                            <div class="text-left">
+                                <h2
+                                    class="text-xs sm:text-sm font-bold text-white tracking-[0.2em] mb-2 drop-shadow-md uppercase">
+                                    500+ Children Supported
+                                </h2>
+                                <p class="text-white/90 text-[10px] font-light tracking-wider drop-shadow-md">
+                                    Nutrition, medical care & digital skills — every day.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="w-1/3 relative h-full">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=1200"
+                            class="absolute inset-0 w-full h-full object-cover" alt="Digital Skills">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end pl-6 pb-8">
+                            <div class="text-left">
+                                <h2
+                                    class="text-xs sm:text-sm font-bold text-white tracking-[0.2em] mb-2 drop-shadow-md uppercase">
+                                    Partner With Us Today
+                                </h2>
+                                <p class="text-white/90 text-[10px] font-light tracking-wider drop-shadow-md">
+                                    Your support changes a child's future forever.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Feature Grid (2-1-2) -->
+            <div class="bg-white py-2" id="programmes-grid">
+                <div class="max-w-7xl mx-auto px-1 sm:px-2">
+
+                    <!-- Top Row: 2 images -->
+                    <div class="grid grid-cols-2 gap-1 mb-1">
+                        <div class="relative group aspect-[3/4] overflow-hidden cursor-pointer"
+                            onclick="goTab('scholars')">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO_6EhUwUFi3cMGwhKQGHb39OjelCS0oAb8g&s"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                alt="Quality Learning">
+                            <div class="absolute bottom-6 left-0 right-0 flex justify-center">
+                                <div class="bg-white px-6 py-3 shadow-lg">
+                                    <h3
+                                        class="text-xs sm:text-sm font-bold text-black uppercase tracking-widest text-center">
+                                        Quality Learning</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative group aspect-[3/4] overflow-hidden cursor-pointer"
+                            onclick="goTab('scholars')">
+                            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=600"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                alt="Nutrition">
+                            <div class="absolute bottom-6 left-0 right-0 flex justify-center">
+                                <div class="bg-white px-6 py-3 shadow-lg">
+                                    <h3
+                                        class="text-xs sm:text-sm font-bold text-black uppercase tracking-widest text-center">
+                                        Nutrition Program</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Middle Row: 1 Big -->
+                    <div class="relative group h-[380px] sm:h-[480px] overflow-hidden cursor-pointer mb-1 w-full"
+                        onclick="goTab('impact')">
+                        <img src="data:image/jpeg;base64,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"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            alt="Medical Care">
+                        <div class="absolute bottom-8 left-0 right-0 flex justify-center">
+                            <div class="bg-white px-8 py-3 shadow-xl">
+                                <h3
+                                    class="text-sm sm:text-base font-bold text-black uppercase tracking-widest text-center">
+                                    Medical Care</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Row: 2 images -->
+                    <div class="grid grid-cols-2 gap-1">
+                        <div class="relative group aspect-[3/4] overflow-hidden cursor-pointer"
+                            onclick="goTab('impact')">
+                            <img src="https://images.unsplash.com/photo-1524061511843-fd43443e3cb2?auto=format&fit=crop&q=80&w=600"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                alt="Digital Skills">
+                            <div class="absolute bottom-6 left-0 right-0 flex justify-center">
+                                <div class="bg-white px-6 py-3 shadow-lg">
+                                    <h3
+                                        class="text-xs sm:text-sm font-bold text-black uppercase tracking-widest text-center">
+                                        Digital Skills</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative group aspect-[3/4] overflow-hidden cursor-pointer"
+                            onclick="goTab('impact')">
+                            <img src="data:image/jpeg;base64,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"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                alt="Sports & Arts">
+                            <div class="absolute bottom-6 left-0 right-0 flex justify-center">
+                                <div class="bg-white px-6 py-3 shadow-lg">
+                                    <h3
+                                        class="text-xs sm:text-sm font-bold text-black uppercase tracking-widest text-center">
+                                        Sports &amp; Arts</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scholars Marquee -->
+            <div class="bg-white py-4 px-2 sm:px-3">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-3">
+                        <h2 class="text-2xl sm:text-3xl font-bold uppercase tracking-wider mb-1">OUR SCHOLARS</h2>
+                        <p class="text-sm text-gray-600 tracking-widest">meet the children you're supporting</p>
+                    </div>
+                    <div class="overflow-hidden">
+                        <div class="animate-marquee py-3">
+                            <!-- Cards x2 for seamless loop -->
+                            <div id="marquee-inner"></div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button onclick="goTab('scholars')" class="btn-primary px-8 py-3 text-xs rounded-sm">View All
+                            Scholars</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vision / Impact Video -->
+            <div class="bg-white py-4 px-2 sm:px-3">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-4">
+                        <h2 class="text-2xl sm:text-3xl font-bold uppercase tracking-wider mb-1">OUR VISION</h2>
+                        <p class="text-sm text-gray-600 tracking-widest">see the difference we're making</p>
+                    </div>
+                    <div class="relative h-[340px] sm:h-[460px] bg-black rounded-lg overflow-hidden shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1200"
+                            class="w-full h-full object-cover opacity-60" alt="Our Vision">
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
+                            <i data-lucide="play-circle" class="w-16 h-16 mb-4 opacity-80"></i>
+                            <h3 class="text-xl font-bold uppercase tracking-widest mb-2">Watch Our Story</h3>
+                            <p class="text-sm text-white/80 max-w-xs">500+ children. 5 programmes. One community. One
+                                future.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== MEET OUR LEADERS ===== -->
+            <div class="bg-white py-8 px-0">
+                <div class="max-w-7xl mx-auto">
+
+                    <!-- Section Header -->
+                    <div class="text-center mb-6 px-4">
+                        <p class="text-[10px] font-black text-blue-600 uppercase tracking-[0.25em] mb-1">The People
+                            Behind The Mission</p>
+                        <h2 class="text-2xl sm:text-3xl font-bold uppercase tracking-wider">Meet Our Leaders</h2>
+                    </div>
+
+                    <!-- Founder Card — Tibarokoka Clement -->
+                    <div class="mx-4 mb-5 rounded-2xl overflow-hidden shadow-lg animate-fade-in-up border border-gray-100"
+                        style="animation-delay:0ms">
+                        <div class="flex gap-0">
+                            <!-- Photo -->
+                            <div class="w-36 sm:w-44 flex-shrink-0 relative">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=500"
+                                    class="w-full h-full object-cover" alt="Tibarokoka Clement — Founder"
+                                    style="min-height:180px"
+                                    onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400'">
+                                <!-- Role ribbon -->
+                                <div class="absolute bottom-0 left-0 right-0 bg-black/80 py-1 px-2 text-center">
+                                    <span
+                                        class="text-[8px] font-black text-white uppercase tracking-widest">Founder</span>
+                                </div>
+                            </div>
+                            <!-- Content -->
+                            <div class="flex-grow p-5 flex flex-col justify-center bg-white">
+                                <h3 class="text-lg font-black text-gray-900 leading-tight">Tibarokoka Clement</h3>
+                                <p class="text-[10px] text-blue-600 font-black uppercase tracking-widest mb-3">Visionary
+                                    Founder · Shalom</p>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    Clement founded Shalom with a burning vision — that every child in rural Uganda
+                                    deserves a quality education, warm meals, and a hopeful future. His sacrificial
+                                    leadership has transformed hundreds of young lives since 2020.
+                                </p>
+                                <div class="flex items-center gap-3 mt-4">
+                                    <a href="tel:0772873936"
+                                        class="flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-gray-700 hover:text-black transition-colors">
+                                        <i data-lucide="phone" class="w-3 h-3"></i> Call
+                                    </a>
+                                    <span class="text-gray-300">|</span>
+                                    <a href="https://wa.me/256772873936" target="_blank"
+                                        class="flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-green-600 hover:text-green-800 transition-colors">
+                                        <i data-lucide="message-circle" class="w-3 h-3"></i> WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Co-Founder Card — Lillian Tibarokoka -->
+                    <div class="mx-4 mb-5 rounded-2xl overflow-hidden shadow-lg animate-fade-in-up border border-gray-100"
+                        style="animation-delay:100ms">
+                        <div class="flex gap-0 flex-row-reverse">
+                            <!-- Photo -->
+                            <div class="w-36 sm:w-44 flex-shrink-0 relative">
+                                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=400&h=500"
+                                    class="w-full h-full object-cover" alt="Lillian Tibarokoka — Co-Founder"
+                                    style="min-height:180px"
+                                    onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400'">
+                                <div class="absolute bottom-0 left-0 right-0 bg-blue-700/90 py-1 px-2 text-center">
+                                    <span
+                                        class="text-[8px] font-black text-white uppercase tracking-widest">Co-Founder</span>
+                                </div>
+                            </div>
+                            <!-- Content -->
+                            <div class="flex-grow p-5 flex flex-col justify-center bg-white">
+                                <h3 class="text-lg font-black text-gray-900 leading-tight">Lillian Tibarokoka</h3>
+                                <p class="text-[10px] text-blue-600 font-black uppercase tracking-widest mb-3">
+                                    Co-Founder · Heart of the Mission</p>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    Lillian is the nurturing force at the heart of Shalom. She oversees child welfare,
+                                    nutrition programmes, and community partnerships — making sure every scholar feels
+                                    loved, safe, and seen every single day.
+                                </p>
+                                <div class="flex items-center gap-3 mt-4">
+                                    <a href="https://wa.me/256772873936" target="_blank"
+                                        class="flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-green-600 hover:text-green-800 transition-colors">
+                                        <i data-lucide="message-circle" class="w-3 h-3"></i> WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Head Teacher Card -->
+                    <div class="mx-4 mb-2 rounded-2xl overflow-hidden shadow-lg animate-fade-in-up border border-gray-100"
+                        style="animation-delay:200ms">
+                        <div class="flex gap-0">
+                            <!-- Photo -->
+                            <div class="w-36 sm:w-44 flex-shrink-0 relative">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=500"
+                                    class="w-full h-full object-cover" alt="Head Teacher — Shalom School"
+                                    style="min-height:180px"
+                                    onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400'">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gray-800/90 py-1 px-2 text-center">
+                                    <span class="text-[8px] font-black text-white uppercase tracking-widest">Head
+                                        Teacher</span>
+                                </div>
+                            </div>
+                            <!-- Content -->
+                            <div class="flex-grow p-5 flex flex-col justify-center bg-white">
+                                <h3 class="text-lg font-black text-gray-900 leading-tight">Head Teacher</h3>
+                                <p class="text-[10px] text-blue-600 font-black uppercase tracking-widest mb-3">Academic
+                                    Leadership · Shalom School</p>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    Our Head Teacher drives academic excellence across all classes, mentoring teachers
+                                    and championing a culture of discipline, curiosity, and achievement for every
+                                    scholar at Shalom.
+                                </p>
+                                <div class="flex items-center gap-2 mt-3">
+                                    <span
+                                        class="inline-flex items-center gap-1 bg-gray-100 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-wider text-gray-600">
+                                        <i data-lucide="graduation-cap" class="w-3 h-3"></i> Academic Lead
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Goal Tracker -->
+            <div class="bg-white py-4 px-4 sm:px-6">
+                <div class="max-w-xl mx-auto border border-gray-100 rounded-2xl p-6 shadow-sm animate-fade-in-up">
+                    <div class="flex justify-between items-start mb-5">
+                        <div>
+                            <p class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Support A Child
+                            </p>
+                            <p class="text-3xl font-black text-gray-900 mt-1">50,000 <span
+                                    class="text-sm font-bold text-gray-400 uppercase">UGX</span></p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                            <i data-lucide="trending-up" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <div class="progress-bar mb-3">
+                        <div class="progress-fill" style="width:72%"></div>
+                    </div>
+                    <div class="flex justify-between text-[10px] text-gray-500 font-bold uppercase">
+                        <span>72% Goal Met</span>
+                        <span>Term 1 / 2025</span>
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <button onclick="goTab('partner')"
+                        class="btn-primary w-full max-w-xl px-6 py-4 text-xs rounded-sm">Partner With Us Now</button>
+                </div>
+            </div>
+
+            <!-- Features & Socials -->
+            <div class="bg-white py-8 px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 text-center">
+                    <!-- Support -->
+                    <div
+                        class="flex flex-col items-center justify-center border-b sm:border-b-0 sm:border-r border-gray-100 pb-6 sm:pb-0 sm:pr-6">
+                        <div
+                            class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4 shadow-lg animate-pulse-slow">
+                            <i data-lucide="headphones" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="text-base font-bold uppercase tracking-wider mb-2">Support 24/7</h3>
+                        <p class="text-sm text-gray-600">Reach us anytime — we are here for every child and every
+                            partner.</p>
+                    </div>
+
+                    <!-- Social -->
+                    <div class="flex flex-col items-center justify-center pt-2 sm:pt-0 sm:pl-6">
+                        <h3 class="text-base font-bold uppercase tracking-wider mb-4">Follow Us @Shalom</h3>
+                        <div class="flex items-center gap-3">
+                            <a href="#"
+                                class="w-11 h-11 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#1877F2] hover:text-white transition-all transform hover:scale-110 shadow-sm">
+                                <i data-lucide="facebook" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#"
+                                class="w-11 h-11 bg-gray-100 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all transform hover:scale-110 shadow-sm">
+                                <i data-lucide="twitter" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#"
+                                class="w-11 h-11 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#E4405F] hover:text-white transition-all transform hover:scale-110 shadow-sm">
+                                <i data-lucide="instagram" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#"
+                                class="w-11 h-11 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#FF0000] hover:text-white transition-all transform hover:scale-110 shadow-sm">
+                                <i data-lucide="youtube" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3 font-medium tracking-wide">Facebook • Twitter • Instagram •
+                            YouTube</p>
+
+                        <div class="mt-6 pt-6 border-t border-gray-200 w-full">
+                            <h4 class="text-sm font-bold uppercase tracking-wider mb-3">Our Location</h4>
+                            <div class="text-xs text-gray-600 space-y-1">
+                                <div class="flex items-center justify-center gap-2">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-gray-800"></i>
+                                    <span class="font-bold text-gray-900 uppercase">Uganda, East Africa</span>
+                                </div>
+                                <p>Rural Communities · Kampala Region</p>
+                                <p>0772873936</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /home -->
+
+        <!-- SCHOLARS VIEW -->
+        <div id="view-scholars" class="view animate-fade-in">
+            <div class="px-4 pt-6 pb-24 max-w-2xl mx-auto">
+                <h2 class="text-2xl font-black mb-1 uppercase tracking-wider">Our Scholars</h2>
+                <p class="text-sm text-gray-500 mb-6 tracking-wide">Tap a child to support their dreams this term.</p>
+                <div class="space-y-4" id="scholars-list"></div>
+            </div>
+        </div>
+
+        <!-- IMPACT VIEW -->
+        <div id="view-impact" class="view animate-fade-in">
+            <div class="pt-6 pb-24">
+                <div class="px-4 mb-6">
+                    <h2 class="text-2xl font-black mb-1 uppercase tracking-wider">Our Footprint</h2>
+                    <p class="text-sm text-gray-500 tracking-wide">Projects successfully executed by Shalom.</p>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-3 mb-6 px-4">
+                    <div class="stat-card rounded-xl shadow-sm animate-fade-in-up" style="animation-delay:0ms">
+                        <p class="text-3xl font-black text-blue-600">500+</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1 font-bold">Children</p>
+                    </div>
+                    <div class="stat-card rounded-xl shadow-sm animate-fade-in-up" style="animation-delay:80ms">
+                        <p class="text-3xl font-black text-blue-600">5</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1 font-bold">Programmes</p>
+                    </div>
+                    <div class="stat-card rounded-xl shadow-sm animate-fade-in-up" style="animation-delay:160ms">
+                        <p class="text-3xl font-black text-blue-600">4+</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1 font-bold">Years</p>
+                    </div>
+                </div>
+
+                <!-- Projects: full-width images, no side padding -->
+                <div class="space-y-0">
+
+                    <!-- Solar -->
+                    <div class="animate-fade-in-up" style="animation-delay:0ms">
+                        <div class="relative h-72 w-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800"
+                                class="w-full h-full object-cover" alt="Solar Power Initiative"
+                                onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800'">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-5">
+                                <div>
+                                    <span
+                                        class="inline-block bg-blue-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-2">Completed</span>
+                                    <h4 class="font-black text-white text-xl">Solar Power Initiative</h4>
+                                    <p class="text-white/80 text-xs leading-relaxed mt-1">24 solar panels — consistent
+                                        light for night-time reading &amp; computer labs across 3 schools.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2-col gallery -->
+                    <div class="grid grid-cols-2 gap-0">
+                        <div class="relative h-52 overflow-hidden animate-fade-in-up" style="animation-delay:80ms">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=400"
+                                class="w-full h-full object-cover" alt="Uniform Drive"
+                                onerror="this.src='https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&q=80&w=400'">
+                            <div class="absolute inset-0 bg-black/50 flex items-end p-3">
+                                <p class="text-white text-[10px] font-black uppercase tracking-widest">Uniform Drive</p>
+                            </div>
+                        </div>
+                        <div class="relative h-52 overflow-hidden animate-fade-in-up" style="animation-delay:120ms">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb28f74b671?auto=format&fit=crop&q=80&w=400"
+                                class="w-full h-full object-cover" alt="Clean Water"
+                                onerror="this.src='https://images.unsplash.com/photo-1551524559-8af4e6624178?auto=format&fit=crop&q=80&w=400'">
+                            <div class="absolute inset-0 bg-black/50 flex items-end p-3">
+                                <p class="text-white text-[10px] font-black uppercase tracking-widest">Clean Water</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sports -->
+                    <div class="animate-fade-in-up" style="animation-delay:160ms">
+                        <div class="relative h-72 w-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1526721940322-14fe39eaf9b0?auto=format&fit=crop&q=80&w=800"
+                                class="w-full h-full object-cover" alt="Sports Excellence Program"
+                                onerror="this.src='https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&q=80&w=800'">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-5">
+                                <div>
+                                    <span
+                                        class="inline-block bg-green-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-2">Ongoing</span>
+                                    <h4 class="font-black text-white text-xl">Sports Excellence Program</h4>
+                                    <p class="text-white/80 text-xs leading-relaxed mt-1">Annual competition for 120+
+                                        scholars — teamwork, sports, arts &amp; talent development every term.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nutrition -->
+                    <div class="animate-fade-in-up" style="animation-delay:200ms">
+                        <div class="relative h-72 w-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800"
+                                class="w-full h-full object-cover" alt="Nutrition Program"
+                                onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800'">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-5">
+                                <div>
+                                    <span
+                                        class="inline-block bg-yellow-500 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-2">Active</span>
+                                    <h4 class="font-black text-white text-xl">Nutrition &amp; Meals Program</h4>
+                                    <p class="text-white/80 text-xs leading-relaxed mt-1">Three hot meals daily — 500+
+                                        children fed every day, so no child learns on an empty stomach.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- PARTNER VIEW -->
+        <div id="view-partner" class="view animate-fade-in">
+
+            <!-- Full-page hero background -->
+            <div class="relative min-h-screen flex flex-col">
+
+                <!-- Top hero image strip -->
+                <div class="relative h-56 w-full overflow-hidden flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800"
+                        class="w-full h-full object-cover" alt="Shalom Children"
+                        onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800'">
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-white"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-center">
+                        <h2 class="text-2xl font-black text-white uppercase tracking-wider drop-shadow-lg">Partner With
+                            Us</h2>
+                        <p class="text-white/80 text-xs mt-1 tracking-widest">Change a child's future today</p>
+                    </div>
+                </div>
+
+                <!-- Content card -->
+                <div class="flex-grow bg-white px-6 pt-8 pb-32 flex flex-col items-center">
+
+                    <!-- Heart icon -->
+                    <div
+                        class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-5 animate-pulse-slow">
+                        <i data-lucide="heart" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+
+                    <!-- Message -->
+                    <h3 class="text-xl font-black text-gray-900 text-center mb-2 uppercase tracking-wide">Reach Out Now
+                    </h3>
+                    <p class="text-sm text-gray-500 text-center mb-8 leading-relaxed max-w-xs">
+                        Talk directly to <strong class="text-gray-800">Tibarokoka Clement</strong>, our founder, to
+                        discuss how you can sponsor a child or support our programmes.
+                    </p>
+
+                    <!-- WhatsApp Button -->
+                    <a href="https://wa.me/256772873936?text=Hello%20Tibarokoka%20Clement%2C%20I%20would%20like%20to%20partner%20with%20Shalom%20to%20support%20a%20child%27s%20education.%20Please%20guide%20me%20on%20the%20next%20steps.%20Thank%20you%20%F0%9F%99%8F"
+                        target="_blank"
+                        class="w-full max-w-sm flex items-center justify-center gap-3 bg-[#25D366] text-white rounded-2xl py-5 font-black text-sm uppercase tracking-widest shadow-xl mb-4 transition-all active:scale-95"
+                        style="font-family:'Montserrat',sans-serif; text-decoration:none;">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                        Chat on WhatsApp
+                    </a>
+
+                    <!-- Call Button -->
+                    <a href="tel:0772873936"
+                        class="w-full max-w-sm flex items-center justify-center gap-3 bg-black text-white rounded-2xl py-5 font-black text-sm uppercase tracking-widest shadow-xl transition-all active:scale-95"
+                        style="font-family:'Montserrat',sans-serif; text-decoration:none;">
+                        <i data-lucide="phone" class="w-6 h-6"></i>
+                        Call 0772 873 936
+                    </a>
+
+                    <!-- Divider note -->
+                    <p class="text-[11px] text-gray-400 text-center mt-6 tracking-wide">
+                        Both options connect you directly to<br>
+                        <strong class="text-gray-600">Tibarokoka Clement — Founder, Shalom</strong>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </main><!-- /app-content -->
+
+    <!-- Floating WhatsApp removed per user request -->
+
+    <!-- ===== CHILD PROFILE SHEET ===== -->
+    <div id="profile-overlay">
+        <div id="profile-sheet">
+            <!-- Drag handle -->
+            <div class="flex justify-center pt-3 pb-1">
+                <div class="w-10 h-1 bg-gray-200 rounded-full"></div>
+            </div>
+            <!-- Close button -->
+            <button onclick="closeProfile()"
+                class="absolute top-4 right-4 z-10 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center shadow-sm"
+                style="position:absolute;top:12px;right:12px;">
+                <i data-lucide="x" class="w-4 h-4 text-gray-700"></i>
+            </button>
+
+            <!-- Hero photo -->
+            <div class="profile-hero">
+                <img id="profile-img" src="" alt="Scholar"
+                    onerror="this.src='https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=400'">
+                <div class="profile-hero-overlay">
+                    <span class="profile-badge" id="profile-level">Level</span>
+                    <h2 class="text-2xl font-black text-white leading-tight" id="profile-name">Name</h2>
+                    <p class="text-white/70 text-xs mt-1" id="profile-dream">Dream</p>
+                </div>
+            </div>
+
+            <!-- Body -->
+            <div class="p-5 space-y-5 pb-8">
+
+                <!-- About -->
+                <div>
+                    <p class="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-1">About This Scholar</p>
+                    <p class="text-sm text-gray-700 leading-relaxed" id="profile-note">Note</p>
+                </div>
+
+                <!-- Stat row -->
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="bg-gray-50 rounded-xl p-3 text-center">
+                        <p class="text-lg font-black text-gray-900" id="stat-meals">3</p>
+                        <p class="text-[9px] text-gray-400 uppercase tracking-widest font-bold">Meals/Day</p>
+                    </div>
+                    <div class="bg-blue-50 rounded-xl p-3 text-center">
+                        <p class="text-lg font-black text-blue-700" id="stat-term">T1</p>
+                        <p class="text-[9px] text-gray-400 uppercase tracking-widest font-bold">Term</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-3 text-center">
+                        <p class="text-lg font-black text-gray-900">✓</p>
+                        <p class="text-[9px] text-gray-400 uppercase tracking-widest font-bold">Enrolled</p>
+                    </div>
+                </div>
+
+                <!-- Sponsor note -->
+                <div class="bg-blue-50 border border-blue-100 rounded-2xl p-4">
+                    <p class="text-[10px] font-black text-blue-700 uppercase tracking-widest mb-1">How You Can Help</p>
+                    <p class="text-xs text-blue-800 leading-relaxed">Sponsoring <span class="font-black"
+                            id="profile-name-inline">this child</span> covers one term of school fees, meals, uniform,
+                        and medical support — changing a life for just <strong>50,000 UGX/term</strong>.</p>
+                </div>
+
+                <!-- WhatsApp CTA -->
+                <a id="profile-wa-btn" href="#" target="_blank" class="wa-support-btn">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    Support on WhatsApp
+                </a>
+
+                <!-- Call option -->
+                <a href="tel:0772873936"
+                    class="flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest text-gray-500 hover:text-black transition-colors py-2">
+                    <i data-lucide="phone" class="w-4 h-4"></i> Or Call Founder: 0772 873 936
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast"></div>
+
+    <!-- Bottom Nav -->
+    <nav id="bottom-nav">
+        <button class="nav-item active" id="nav-home" onclick="goTab('home')">
+            <i data-lucide="home" class="w-5 h-5"></i>
+            Home
+        </button>
+        <button class="nav-item" id="nav-scholars" onclick="goTab('scholars')">
+            <i data-lucide="users" class="w-5 h-5"></i>
+            Scholars
+        </button>
+        <button class="nav-item" id="nav-impact" onclick="goTab('impact')">
+            <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
+            Impact
+        </button>
+        <button class="nav-item" id="nav-partner" onclick="goTab('partner')">
+            <i data-lucide="heart" class="w-5 h-5"></i>
+            Partner
+        </button>
+    </nav>
+
+    <script>
+        // ==================
+        // DATA
+        // ==================
+        const scholars = [
+            { name: 'Sarah Nakato', level: 'Primary 4', dream: 'Future Nurse', note: 'Excellent in Science & Math.', color: 'blue', img: 'https://images.unsplash.com/photo-1547496613-4e193f06758f?auto=format&fit=crop&q=80&w=200' },
+            { name: 'Brian Okello', level: 'Nursery', dream: 'First Generation', note: 'Enjoys painting & coloring.', color: 'purple', img: 'https://images.unsplash.com/photo-1524061511843-fd43443e3cb2?auto=format&fit=crop&q=80&w=200' },
+            { name: 'Esther Namono', level: 'Primary 6', dream: 'Future Engineer', note: 'Lead in Robot Club.', color: 'amber', img: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=200' },
+            { name: 'Wandera Kato', level: 'Primary 5', dream: 'Journalist', note: 'Talented public speaker.', color: 'blue', img: 'https://images.unsplash.com/photo-1524178232363-1fb28f74b671?auto=format&fit=crop&q=80&w=200' },
+            { name: 'Grace Namutebi', level: 'Primary 3', dream: 'Doctor', note: 'Top of her class in STEM.', color: 'green', img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=200' },
+            { name: 'Joseph Ssemanda', level: 'Primary 7', dream: 'Lawyer', note: 'Debate champion in 2024.', color: 'indigo', img: 'https://images.unsplash.com/photo-1526721940322-14fe39eaf9b0?auto=format&fit=crop&q=80&w=200' },
+        ];
+
+        const colorMap = {
+            blue: 'text-blue-600', purple: 'text-purple-600', amber: 'text-amber-600',
+            green: 'text-green-600', indigo: 'text-indigo-600'
+        };
+
+        // ==================
+        // BUILD SCHOLARS LIST
+        // ==================
+        function buildScholarsList() {
+            const list = document.getElementById('scholars-list');
+            if (!list) return;
+            list.innerHTML = scholars.map((s, i) => `
+        <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md transition-all cursor-pointer animate-fade-in-up" style="animation-delay:${i * 60}ms" onclick="openProfile(${i})">
+          <img src="${s.img}" class="w-20 h-20 rounded-xl object-cover flex-shrink-0" alt="${s.name}" onerror="this.src='https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=200'">
+          <div class="flex-grow">
+            <h4 class="font-black text-gray-900 text-lg leading-tight">${s.name}</h4>
+            <p class="text-[10px] ${colorMap[s.color] || 'text-blue-600'} font-black uppercase tracking-widest">${s.level} · ${s.dream}</p>
+            <p class="text-[10px] text-gray-400 mt-1">${s.note}</p>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-gray-300 flex-shrink-0"></i>
+        </div>
+      `).join('');
+            lucide.createIcons();
+        }
+
+        // ==================
+        // CHILD PROFILE SHEET
+        // ==================
+        function openProfile(index) {
+            const s = scholars[index];
+            if (!s) return;
+
+            // Populate fields
+            document.getElementById('profile-img').src = s.img.replace('w=200', 'w=600');
+            document.getElementById('profile-img').alt = s.name;
+            document.getElementById('profile-name').textContent = s.name;
+            document.getElementById('profile-level').textContent = s.level;
+            document.getElementById('profile-dream').textContent = '🌟 Dream: ' + s.dream;
+            document.getElementById('profile-note').textContent = s.note;
+            document.getElementById('profile-name-inline').textContent = s.name;
+            document.getElementById('stat-term').textContent = 'T1 \'25';
+
+            // Build auto-filled WhatsApp message to founder
+            const msg = [
+                '📚 Hello Tibarokoka Clement (Shalom Founder),',
+                '',
+                'I am interested in supporting one of your scholars:',
+                '',
+                '👦 Name:  ' + s.name,
+                '🏫 Level: ' + s.level,
+                '🌟 Dream: ' + s.dream,
+                '📝 Note:  ' + s.note,
+                '',
+                'I would love to know how I can partner to support ' + s.name + ' this term. Please guide me on the next steps.',
+                '',
+                'Thank you 🙏'
+            ].join('\n');
+
+            const waUrl = 'https://wa.me/256772873936?text=' + encodeURIComponent(msg);
+            document.getElementById('profile-wa-btn').href = waUrl;
+
+            // Open overlay
+            document.getElementById('profile-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeProfile() {
+            document.getElementById('profile-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Close on backdrop tap
+        document.getElementById('profile-overlay').addEventListener('click', function (e) {
+            if (e.target === this) closeProfile();
+        });
+
+        // Close on swipe-down (basic)
+        (function () {
+            let startY = 0;
+            const sheet = document.getElementById('profile-sheet');
+            sheet.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
+            sheet.addEventListener('touchend', e => {
+                if (e.changedTouches[0].clientY - startY > 80) closeProfile();
+            }, { passive: true });
+        })();
+
+        // ==================
+        // BUILD MARQUEE
+        // ==================
+        function buildMarquee() {
+            const inner = document.getElementById('marquee-inner');
+            if (!inner) return;
+            const cards = [...scholars, ...scholars].map(s => `
+        <div class="mq-card rounded-2xl" style="width:200px;margin-right:14px;flex-shrink:0;background:white;border:1px solid #f0f0f0;overflow:hidden">
+          <img src="${s.img}" class="w-full h-28 object-cover" alt="${s.name}">
+          <div class="p-3">
+            <h4 class="font-black text-gray-800 text-sm leading-tight">${s.name}</h4>
+            <p class="text-[10px] text-gray-400 mt-1">${s.level} · ${s.dream}</p>
+          </div>
+        </div>
+      `).join('');
+            inner.innerHTML = cards;
+            inner.style.display = 'flex';
+        }
+
+        // ==================
+        // TAB NAVIGATION
+        // ==================
+        const views = ['home', 'scholars', 'impact', 'partner'];
+
+        function goTab(tab) {
+            views.forEach(v => {
+                document.getElementById('view-' + v)?.classList.remove('active');
+                document.getElementById('nav-' + v)?.classList.remove('active');
+            });
+            document.getElementById('view-' + tab)?.classList.add('active');
+            document.getElementById('nav-' + tab)?.classList.add('active');
+            window.scrollTo(0, 0);
+
+            if (tab === 'scholars') buildScholarsList();
+            lucide.createIcons();
+        }
+
+        // ==================
+        // SIDEBAR
+        // ==================
+        function openSidebar() {
+            document.getElementById('sidebar-overlay').classList.add('open');
+        }
+        function closeSidebar() {
+            document.getElementById('sidebar-overlay').classList.remove('open');
+        }
+        document.getElementById('sidebar-overlay').addEventListener('click', function (e) {
+            if (e.target === this) closeSidebar();
+        });
+
+        // ==================
+        // TOAST
+        // ==================
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            if (msg) t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2500);
+        }
+
+        function copyNumber(text) {
+            navigator.clipboard?.writeText(text).then(() => showToast('✅ ' + text + ' copied!'))
+                .catch(() => showToast('Number: ' + text));
+        }
+
+        function copyAndCall(num) {
+            navigator.clipboard?.writeText(num)
+                .then(() => showToast('✅ ' + num + ' copied!'))
+                .catch(() => { });
+        }
+
+        // ==================
+        // INIT
+        // ==================
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            buildMarquee();
+        });
+    </script>
+</body>
+
+</html>
